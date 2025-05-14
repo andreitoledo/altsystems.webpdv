@@ -7,6 +7,16 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicionar suporte para CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirFrontend",
+        builder => builder
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 
 // Verificar se a ConnectionString está presente
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -19,7 +29,7 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-Console.WriteLine("Connection string carregada: " + builder.Configuration.GetConnectionString("DefaultConnection"));
+//Console.WriteLine("Connection string carregada: " + builder.Configuration.GetConnectionString("DefaultConnection"));
 
 // Configuração da autenticação JWT (depois do builder estar criado)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -96,7 +106,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Usar CORS
+app.UseCors("PermitirFrontend");  // Aplica o CORS com a política configurada
+
 app.UseRouting();
+
+
 app.UseAuthentication(); // importante
 app.UseAuthorization();
 
