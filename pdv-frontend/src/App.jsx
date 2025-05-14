@@ -6,6 +6,7 @@ import ClientePage from './pages/ClientePage';
 import CaixaPage from './pages/CaixaPage';
 import { useAuth } from './auth/AuthContext';
 import Layout from './layout/Layout';
+import ProdutoForm from './pages/ProdutoForm';
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -21,13 +22,16 @@ function App() {
 
   return (
     <Layout>
-          <Routes>      
-      <Route path="/produtos" element={isAuthenticated ? <ProdutoPage /> : <Navigate to="/login" />} />
-      <Route path="/clientes" element={<ClientePage />} />
-      <Route path="/caixa" element={<CaixaPage />} />
-      <Route path="*" element={<Navigate to={isAuthenticated ? "/produtos" : "/login"} />} />
-    </Routes>
-      
+      <Routes>
+        <Route path="/produtos" element={isAuthenticated ? <ProdutoPage /> : <Navigate to="/login" />} />
+        <Route path="/clientes" element={<ClientePage />} />
+        <Route path="/caixa" element={<CaixaPage />} />
+        <Route path="*" element={<Navigate to={isAuthenticated ? "/produtos" : "/login"} />} />
+        <Route path="/produto/novo" element={<ProdutoForm />} />
+        <Route path="/produto/:id" element={<ProdutoForm />} />
+        
+      </Routes>
+
     </Layout>
 
   );
