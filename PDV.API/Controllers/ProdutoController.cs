@@ -49,6 +49,19 @@ namespace PDV.API.Controllers
             return NoContent();
         }
 
+        [HttpPut("Inativar/{id}")]
+        public async Task<IActionResult> InativarProduto(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null) return NotFound();
+
+            produto.Ativo = false;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
