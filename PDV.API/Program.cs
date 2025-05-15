@@ -7,14 +7,15 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar suporte para CORS
+// Adiciona o serviço de CORS para permitir requisições de qualquer origem (desenvolvimento)
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("PermitirFrontend",
-        builder => builder
-            .WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+    options.AddPolicy("DevPolicy", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 
@@ -108,7 +109,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Usar CORS
-app.UseCors("PermitirFrontend");  // Aplica o CORS com a política configurada
+app.UseCors("DevPolicy"); // Habilita o CORS para desenvolvimento
 
 app.UseRouting();
 
