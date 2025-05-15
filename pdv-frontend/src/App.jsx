@@ -4,10 +4,12 @@ import LoginPage from './pages/LoginPage';
 import ProdutoPage from './pages/ProdutoPage';
 import ClientePage from './pages/ClientePage';
 import CaixaPage from './pages/CaixaPage';
+import VendaList from './pages/VendaList';
 import { useAuth } from './auth/AuthContext';
 import Layout from './layout/Layout';
 import ProdutoForm from './components/ProdutoForm';
 import ClienteForm from './components/ClienteForm';
+import VendaForm from './components/VendaForm';
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -33,6 +35,10 @@ function App() {
         <Route path="/clientes" element={<ClientePage />} />
         <Route path="cliente/novo" element={<ClienteForm />} />
         <Route path="cliente/:id" element={<ClienteForm />} />
+
+        {/* Venda */}
+        <Route path="/vendas" element={<VendaList />} />
+        <Route path="/venda/nova" element={<VendaForm />} />
 
         {/* Caixa */}
         <Route path="/caixa" element={<CaixaPage />} />

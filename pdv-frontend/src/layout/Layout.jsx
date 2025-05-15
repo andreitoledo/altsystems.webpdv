@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
   const menuItems = [
     { text: 'Produtos', icon: <Inventory />, path: '/produtos' },
     { text: 'Clientes', icon: <People />, path: '/clientes' },
+    { text: 'Vendas', icon: <People />, path: '/vendas' },
     { text: 'Caixa', icon: <PointOfSale />, path: '/caixa' },
     { text: 'Sair', icon: <Logout />, path: '/login' }
   ];
