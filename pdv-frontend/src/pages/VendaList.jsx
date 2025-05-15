@@ -32,9 +32,23 @@ const VendaList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     { field: 'data', headerName: 'Data', width: 130 },
-    { field: 'cliente', headerName: 'Cliente', flex: 1,  },
+     { field: 'cliente', headerName: 'Cliente', flex: 1,  },
+    //{ field: 'cliente', headerName: 'Cliente', flex: 1, valueGetter: (params) => params.row.cliente?.nome },
+
     { field: 'itens', headerName: 'Qtd. Itens', width: 120 },
-    { field: 'total', headerName: 'Total (R$)', width: 120 }
+    { field: 'total', headerName: 'Total (R$)', width: 120 },
+
+    {
+        field: 'acoes',
+        headerName: 'Ações',
+        width: 150,
+        renderCell: (params) => (
+          <Button variant="outlined" onClick={() => navigate(`/venda/${params.row.id}`)}>
+            Ver Detalhes
+          </Button>
+        )
+      }
+      
   ];
 
   return (

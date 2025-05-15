@@ -5,6 +5,7 @@ import ProdutoPage from './pages/ProdutoPage';
 import ClientePage from './pages/ClientePage';
 import CaixaPage from './pages/CaixaPage';
 import VendaList from './pages/VendaList';
+import VendaDetalhes from './pages/VendaDetalhes';
 import { useAuth } from './auth/AuthContext';
 import Layout from './layout/Layout';
 import ProdutoForm from './components/ProdutoForm';
@@ -39,6 +40,7 @@ function App() {
         {/* Venda */}
         <Route path="/vendas" element={<VendaList />} />
         <Route path="/venda/nova" element={<VendaForm />} />
+        <Route path="/venda/:id" element={<VendaDetalhes />} />
 
         {/* Caixa */}
         <Route path="/caixa" element={<CaixaPage />} />
