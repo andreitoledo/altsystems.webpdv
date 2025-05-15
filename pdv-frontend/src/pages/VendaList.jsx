@@ -19,7 +19,7 @@ const VendaList = () => {
       const formatadas = response.data.map(v => ({
         id: v.id,
         data: new Date(v.data).toLocaleDateString(),
-        cliente: v.cliente?.nome || `#${v.clienteId}`,
+        cliente: v.cliente || `#${v.clienteId}`,
         total: v.total.toFixed(2),
         itens: v.itens.length
       }));
@@ -33,6 +33,8 @@ const VendaList = () => {
     { field: 'id', headerName: 'ID', width: 90 },
     { field: 'data', headerName: 'Data', width: 130 },
      { field: 'cliente', headerName: 'Cliente', flex: 1,  },
+     // a linha abaixo para mostrar o nome do cliente, não esta funcionando
+     // esta deixando a tela em branco
     //{ field: 'cliente', headerName: 'Cliente', flex: 1, valueGetter: (params) => params.row.cliente?.nome },
 
     { field: 'itens', headerName: 'Qtd. Itens', width: 120 },

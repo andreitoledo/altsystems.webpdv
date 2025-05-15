@@ -15,8 +15,10 @@ const VendaDetalhes = () => {
       try {
         const response = await api.get(`/api/Venda/${id}`);
         setVenda(response.data);
+        console.log('Venda carregada:', response.data);
       } catch (error) {
         console.error('Erro ao buscar venda:', error);
+
       }
     };
 
@@ -24,36 +26,23 @@ const VendaDetalhes = () => {
   }, [id]);
 
   const columns = [
-    {
-      field: 'produto',
-      headerName: 'Produto',
-      flex: 1,
-      valueGetter: (params) => params?.row?.produto?.nome ?? 'N/A'
-    },
-    {
-      field: 'quantidade',
-      headerName: 'Qtd.',
-      width: 100,
-      valueGetter: (params) => params?.row?.quantidade ?? 0
-    },
+    { field: 'nomeProduto', headerName: 'Produto', flex: 1 },
+    { field: 'quantidade', headerName: 'Qtd.', width: 100 },
     {
       field: 'precoUnitario',
       headerName: 'Preço Unitário',
       width: 150,
-      valueFormatter: ({ value }) => `R$ ${Number(value).toFixed(2)}`
+      // remover formatter por enquanto
     },
     {
       field: 'subtotal',
       headerName: 'Subtotal',
       width: 150,
-      valueGetter: (params) => {
-        const qnt = params?.row?.quantidade ?? 0;
-        const preco = params?.row?.precoUnitario ?? 0;
-        return qnt * preco;
-      },
-      valueFormatter: ({ value }) => `R$ ${Number(value).toFixed(2)}`
+      // remover formatter por enquanto
     }
   ];
+  
+
 
   if (!venda) return <Typography>Carregando...</Typography>;
 
@@ -72,7 +61,20 @@ const VendaDetalhes = () => {
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={venda.itens.map((item, index) => ({ id: item.id || index + 1, ...item }))}
+         rows={venda.itens.map((item, index) => {
+          const precoUnitario = Number(item.precoUnitario ?? 0);
+          const quantidade = Number(item.quantidade ?? 0);
+        
+          return {
+            id: item.id || index + 1,
+            nomeProduto: item.produto?.nome ?? 'N/A',
+            quantidade,
+            precoUnitario,
+            subtotal: quantidade * precoUnitario
+          };
+        })}
+        
+          
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10]}
