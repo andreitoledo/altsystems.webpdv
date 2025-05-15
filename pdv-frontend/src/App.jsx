@@ -6,7 +6,7 @@ import ClientePage from './pages/ClientePage';
 import CaixaPage from './pages/CaixaPage';
 import { useAuth } from './auth/AuthContext';
 import Layout from './layout/Layout';
-import ProdutoForm from './pages/ProdutoForm';
+import ProdutoForm from './components/ProdutoForm';
 
 function App() {
   const { isAuthenticated } = useAuth();
