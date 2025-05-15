@@ -39,6 +39,7 @@ namespace PDV.API.Controllers
                 itens.Add(new ItemVenda
                 {
                     ProdutoId = produto.Id,
+                    Produto = produto,
                     Quantidade = itemDto.Quantidade,
                     PrecoUnitario = produto.PrecoVenda
                 });
@@ -70,8 +71,23 @@ namespace PDV.API.Controllers
                 .Where(v => v.Ativo)
                 .ToListAsync();
 
-            return Ok(vendas);
+            var resultado = vendas.Select(v => new VendaOutputDto
+            {
+                Id = v.Id,
+                Data = v.Data,
+                Cliente = v.Cliente?.Nome,
+                Total = v.Total,
+                Itens = v.Itens.Select(i => new ItemVendaOutputDto
+                {
+                    Produto = i.Produto?.Nome ?? "N/A",
+                    Quantidade = i.Quantidade,
+                    PrecoUnitario = i.PrecoUnitario
+                }).ToList()
+            });
+
+            return Ok(resultado);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

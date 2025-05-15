@@ -15,8 +15,7 @@ namespace PDV.API.Models
         public Venda Venda { get; set; }
 
         public int ProdutoId { get; set; }
-
-        [JsonIgnore]
+        
         public Produto Produto { get; set; }
 
         public int Quantidade { get; set; }
