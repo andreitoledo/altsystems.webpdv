@@ -14,6 +14,7 @@ namespace PDV.API.Data
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Venda> Vendas { get; set; }
         public DbSet<ItemVenda> ItensVendas { get; set; }
+        public DbSet<MovimentoCaixa> MovimentosCaixa { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
