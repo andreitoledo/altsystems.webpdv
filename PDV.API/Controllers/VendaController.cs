@@ -115,5 +115,23 @@ namespace PDV.API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("relatorio")]
+        public async Task<IActionResult> GetRelatorio([FromQuery] DateTime dataInicio, [FromQuery] DateTime dataFim)
+        {
+            var vendas = await _context.Vendas
+                .Include(v => v.Cliente)
+                .Where(v => v.Data >= dataInicio && v.Data <= dataFim)
+                .Select(v => new {
+                    v.Id,
+                    v.Data,
+                    Cliente = v.Cliente != null ? v.Cliente.Nome : $"#{v.ClienteId}",
+                    v.Total
+                })
+                .ToListAsync();
+
+            return Ok(vendas);
+        }
+
     }
 }
