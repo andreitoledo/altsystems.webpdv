@@ -11,6 +11,8 @@ import {
 import LockIcon from '@mui/icons-material/Lock'; // ícone para Fechamento
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong'; // ícone para Vendas
 import { useNavigate } from 'react-router-dom';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+
 
 const drawerWidth = 240;
 
@@ -23,6 +25,7 @@ const Layout = ({ children }) => {
     { text: 'Vendas', icon: <ReceiptLongIcon />, path: '/vendas' },
     { text: 'Caixa', icon: <PointOfSale />, path: '/caixa' },
     { text: 'Fechamento Caixa', icon: <LockIcon />, path: '/caixa/fechamento' },
+    { text: 'Relatório Vendas', icon: <AssessmentIcon />, path: '/relatorios/vendas' },
     { text: 'Sair', icon: <Logout />, path: '/login' }
   ];
 

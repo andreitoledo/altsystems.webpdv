@@ -13,7 +13,8 @@ import ClienteForm from './components/ClienteForm';
 import VendaForm from './components/VendaForm';
 import MovimentoCaixaPage from './pages/MovimentoCaixaPage';
 import FechamentoCaixaPage from './pages/FechamentoCaixaPage';
-import { Box } from '@mui/material';
+import RelatorioVendasPage from './pages/RelatorioVendasPage';
+
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -51,7 +52,8 @@ function App() {
         <Route path="/caixa/movimento" element={<MovimentoCaixaPage />} />
         <Route path="/caixa/fechamento" element={<FechamentoCaixaPage />} />
 
-
+        {/* Relatórios */}
+        <Route path="/relatorios/vendas" element={<RelatorioVendasPage />} />
       </Routes>
 
     </Layout>
