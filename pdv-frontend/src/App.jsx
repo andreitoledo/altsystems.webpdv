@@ -12,6 +12,8 @@ import ProdutoForm from './components/ProdutoForm';
 import ClienteForm from './components/ClienteForm';
 import VendaForm from './components/VendaForm';
 import MovimentoCaixaPage from './pages/MovimentoCaixaPage';
+import FechamentoCaixaPage from './pages/FechamentoCaixaPage';
+import { Box } from '@mui/material';
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -47,6 +49,7 @@ function App() {
         <Route path="/caixa" element={<CaixaPage />} />
         {/* <Route path="*" element={<Navigate to={isAuthenticated ? "/produtos" : "/login"} />} /> */}
         <Route path="/caixa/movimento" element={<MovimentoCaixaPage />} />
+        <Route path="/caixa/fechamento" element={<FechamentoCaixaPage />} />
 
 
       </Routes>

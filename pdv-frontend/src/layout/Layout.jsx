@@ -1,6 +1,15 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, AppBar, Toolbar, Typography, Box } from '@mui/material';
-import { Inventory, People, PointOfSale, Logout } from '@mui/icons-material';
+import {
+  Drawer, List, ListItem, ListItemIcon, ListItemText,
+  AppBar, Toolbar, Typography, Box
+} from '@mui/material';
+
+import {
+  Inventory, People, PointOfSale, Logout
+} from '@mui/icons-material';
+
+import LockIcon from '@mui/icons-material/Lock'; // ícone para Fechamento
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong'; // ícone para Vendas
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -11,8 +20,9 @@ const Layout = ({ children }) => {
   const menuItems = [
     { text: 'Produtos', icon: <Inventory />, path: '/produtos' },
     { text: 'Clientes', icon: <People />, path: '/clientes' },
-    { text: 'Vendas', icon: <People />, path: '/vendas' },
+    { text: 'Vendas', icon: <ReceiptLongIcon />, path: '/vendas' },
     { text: 'Caixa', icon: <PointOfSale />, path: '/caixa' },
+    { text: 'Fechamento Caixa', icon: <LockIcon />, path: '/caixa/fechamento' },
     { text: 'Sair', icon: <Logout />, path: '/login' }
   ];
 
